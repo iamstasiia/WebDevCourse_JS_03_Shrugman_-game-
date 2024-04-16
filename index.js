@@ -1,17 +1,17 @@
 import { question, keyInYN } from "readline-sync";
 import colors from "colors";
 import { schrugman, smallMan, userName } from "./constants.js";
-import { schrugmanGame } from "./gamebody.js";
+import { schrugmanGame, goodbye } from "./gamebody.js";
 
 export function greet() {
     console.clear();
-    console.log("\n\t    Welcome Guest!".blue.bold);
+    console.log("\n\t\tWelcome Guest!".blue.bold);
     console.log(schrugman.join("").yellow);
 
     let userName = question(
-        "Shrugman".blue.bold +
-            " will be happy to meet you.".blue +
-            "\n\tWhat is ".blue +
+        "\tShrugman".white.bold +
+            " will be happy to meet you.".white +
+            "\n\t     What is ".blue +
             "your name?".blue.bold.underline +
             " >>> ".blue,
     );
@@ -49,9 +49,11 @@ function firstRun() {
     );
     console.log("\n\n\t\tGood luck!".yellow.bold);
 
-    return keyInYN("\n\n\tShall we begin? ".bold)
-        ? schrugmanGame()
-        : console.log("No");
+    if (keyInYN("\n\n\tShall we begin? ".bold)) {
+        return schrugmanGame();
+    } else {
+        return goodbye();
+    }
 }
 
 firstRun();
