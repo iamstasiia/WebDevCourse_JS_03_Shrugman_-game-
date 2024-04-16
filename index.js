@@ -1,1 +1,4 @@
-const prompt = require('prompt-sync')({ sigint: true });
+import { question } from "readline-sync";
+import { greet } from "./functions.js";
+
+greet();
