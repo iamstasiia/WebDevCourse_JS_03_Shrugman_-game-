@@ -1,3 +1,5 @@
+import { greet } from "./index.js";
+
 export const schrugman = [
     "                                       \n              ▄▄███▀▀▀▄▄               \n▄████▄  ▄█▀▄▄█▀█▄█▀   ▄█▄              ",
     "\n▀▀█▀██ █▀  ██  ▀▀▀   ██▄█              ",
@@ -10,3 +12,7 @@ export const schrugman = [
     "\n        █               ██  ▀▀   ▄█    ",
     "\n        █               ███▄   ▄▄▀     \n        ▀               ▀▀ ▀▀▀▀▀       ",
 ];
+
+export const smallMan = ["¯", "\\", "_", "(", ":", "/", ")", "_", "/", "¯"];
+
+export const userName = greet();
