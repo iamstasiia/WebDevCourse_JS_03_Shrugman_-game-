@@ -13,21 +13,9 @@ import { winner, loser } from "./winnerOrLoser.js";
 export function schrugmanGame() {
     questionCounter[0]++;
 
-    let randomIndex = Math.floor(Math.random() * moviesArray.length);
-    let randomMovie = moviesArray[randomIndex];
-    usedMovies.push(randomMovie);
-    moviesArray.splice(randomIndex, 1);
-    let { title, year, description, deutsch, characters } = randomMovie;
-    let hiddenTitle = [];
-    for (let i = 0; i < title.length; i++) {
-        if (title[i] === " ") {
-            hiddenTitle.push(" ");
-        } else if (title[i] === "'") {
-            hiddenTitle.push("'");
-        } else {
-            hiddenTitle.push("_".bold);
-        }
-    }
+    let userRandomMovie = randomMovie();
+    let { title, year, description, deutsch, characters } = userRandomMovie;
+    let userHiddenTitle = hiddenTitle(title);
 
     let userHiddenMan = [...smallMan];
     let userSmallMan = [];
@@ -51,7 +39,7 @@ export function schrugmanGame() {
                 year.yellow,
         );
 
-        console.log(`\n    ${hiddenTitle.join("")}\n`);
+        console.log(`\n    ${userHiddenTitle.join("")}\n`);
         console.log(
             "    " +
                 userSmallMan.join("").rainbow.bold +
@@ -80,13 +68,12 @@ export function schrugmanGame() {
         );
 
         if (answer.length !== 0) {
-            if (
-                answer.length !== 0 &&
-                title.toLowerCase().includes(answer.toLowerCase())
-            ) {
+            answer = answer.toLowerCase().split(" ").join("");
+
+            if (title.toLowerCase().includes(answer)) {
                 title.split("").forEach((letter, index) => {
-                    if (letter.toLowerCase() === answer[0].toLowerCase()) {
-                        hiddenTitle[index] = letter;
+                    if (answer.toLowerCase().includes(letter.toLowerCase())) {
+                        userHiddenTitle[index] = letter;
                     }
                 });
             } else {
@@ -95,13 +82,13 @@ export function schrugmanGame() {
             }
         }
 
-        if (userSmallMan.length === 10 && hiddenTitle.includes("_".bold)) {
+        if (userSmallMan.length === 10 && userHiddenTitle.includes("_".bold)) {
             run = false;
             questionCounter[0]--;
             loser();
         } else if (
             userSmallMan.length < 10 &&
-            !hiddenTitle.includes("_".bold)
+            !userHiddenTitle.includes("_".bold)
         ) {
             run = false;
             userStatusBox.unshift(likeIcon);
@@ -109,4 +96,28 @@ export function schrugmanGame() {
             winner();
         }
     }
+}
+
+function randomMovie() {
+    let randomIndex = Math.floor(Math.random() * moviesArray.length);
+    let randomMovie = moviesArray[randomIndex];
+    usedMovies.push(randomMovie);
+    moviesArray.splice(randomIndex, 1);
+    return randomMovie;
+}
+
+function hiddenTitle(movieTitle) {
+    let hiddenTitle = [];
+    for (let i = 0; i < movieTitle.length; i++) {
+        if (movieTitle[i] === " ") {
+            hiddenTitle.push(" ");
+        } else if (movieTitle[i] === "-") {
+            hiddenTitle.push("-");
+        } else if (movieTitle[i] === "'") {
+            hiddenTitle.push("'");
+        } else {
+            hiddenTitle.push("_".bold);
+        }
+    }
+    return hiddenTitle;
 }

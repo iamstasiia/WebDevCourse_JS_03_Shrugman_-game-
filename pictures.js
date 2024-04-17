@@ -20,9 +20,9 @@ export const likesTruckload = [
     "\n═══▄▄██▌█═".blue,
     " A truckload of likes to the WINNER ".yellow.bold,
     "═█".blue,
-    "\n▄▄▄▌▐██▌█════════════".blue,
+    "\n▄▄▄▌▐██▌█═════════════".blue,
     " Unloading... ".yellow,
-    "════════════█".blue,
+    "═══════════█".blue,
     "\n███████▌█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█".blue,
     "\n▀(@)▀▀▀▀▀▀▀▀▀▀▀(@)(@)▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀(@)(@)▀▀\n".blue,
 ];
