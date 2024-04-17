@@ -1,20 +1,14 @@
 import { keyInYN, question } from "readline-sync";
 import colors from "colors";
-import {
-    smallMan,
-    moviesArray,
-    schrugman,
-    userName,
-    seeYouSoon,
-    likesTruckload,
-} from "./constants.js";
+import { moviesArray, userName, questionCounter } from "./constants.js";
+import { schrugman, smallMan, likesTruckload, seeYouSoon } from "./pictures.js";
 
 export function schrugmanGame() {
-    const randomMovie =
+    questionCounter[0]++;
+    let randomMovie =
         moviesArray[Math.floor(Math.random() * moviesArray.length)];
-    const { title, year, description } = randomMovie;
-
-    const hiddenTitle = [];
+    let { title, year, description } = randomMovie;
+    let hiddenTitle = [];
     for (let i = 0; i < title.length; i++) {
         if (title[i] === " ") {
             hiddenTitle.push(" ");
@@ -31,8 +25,9 @@ export function schrugmanGame() {
     let run = true;
     while (run) {
         console.clear();
+        console.log(`Question ${questionCounter[0]}\n`.yellow.bold);
         console.log(
-            "Description:\n".blue.bold +
+            "Description:\n\t".blue.bold +
                 description.italic +
                 "\nYear of release: ".blue.bold +
                 year.yellow,
@@ -44,7 +39,7 @@ export function schrugmanGame() {
                 userHiddenMan.join("").gray.dim,
         );
 
-        const answer = question(
+        let answer = question(
             "\n Enter a letter ".bgYellow.black +
                 " " +
                 ">".bgCyan +
@@ -71,6 +66,7 @@ export function schrugmanGame() {
 
         if (userSmallMan.length === 10 && hiddenTitle.includes("_")) {
             run = false;
+            questionCounter[0] = 0;
             loser();
         } else if (userSmallMan.length < 10 && !hiddenTitle.includes("_")) {
             run = false;
@@ -85,8 +81,7 @@ function loser() {
     console.log("             I'm sorry, but you lost.           ".bgRed.bold);
     keyInYN("\n\n\tWant to try again? >>> ".bold) ? schrugmanGame() : goodbye();
 }
-//             I'm sorry, but you lost.           /
-//           Congratulations! You won!!!          /
+
 function winner() {
     console.clear();
     console.log(likesTruckload.join(""));

@@ -1,6 +1,7 @@
 import { question, keyInYN } from "readline-sync";
 import colors from "colors";
-import { schrugman, smallMan, userName } from "./constants.js";
+import { schrugman, smallMan } from "./pictures.js";
+import { userName } from "./constants.js";
 import { schrugmanGame, goodbye } from "./gamebody.js";
 
 export function greet() {
