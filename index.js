@@ -2,7 +2,8 @@ import { question, keyInYN } from "readline-sync";
 import colors from "colors";
 import { schrugman, smallMan } from "./pictures.js";
 import { userName } from "./constants.js";
-import { schrugmanGame, goodbye } from "./gamebody.js";
+import { schrugmanGame } from "./gamebody.js";
+import { goodbye } from "./goodbye.js";
 
 export function greet() {
     console.clear();
@@ -24,7 +25,7 @@ export function greet() {
 function firstRun() {
     console.clear();
     console.log(
-        "\n\tGreetings to you ".blue.bold +
+        "\n    Greetings to you ".blue.bold +
             userName.yellow.bold +
             " again!".blue.bold,
     );
