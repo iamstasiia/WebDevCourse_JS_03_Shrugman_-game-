@@ -29,7 +29,17 @@ export function winner() {
         );
         console.log(seeYouSoon.join(""));
     } else {
-        return keyInYN("\n\n\tShall we continue? >>> ".bold)
+        if (moviesArray.length === 1) {
+            console.log(
+                "\n\n    👇 But I have one more question for you 👇".blue,
+            );
+        } else {
+            console.log(
+                `\n\n    👇 But I have ${moviesArray.length} more questions for you 👇`,
+            );
+        }
+
+        return keyInYN("\n\t Shall we continue? >>> ".bold.underline)
             ? schrugmanGame()
             : goodbye();
     }
@@ -37,14 +47,14 @@ export function winner() {
 
 export function loser() {
     console.clear();
-    console.log(schrugman.join("").black);
-    console.log("             I'm sorry, but you lost.           ".bgRed.bold);
-    let tryAgain = keyInYN("\n\n\tWant to try again? >>> ".bold);
-    if (tryAgain && questionCounter[0] === 1) {
-        moviesArray.push(usedMovies[0]);
-        usedMovies.splice(0, 1);
-        return schrugmanGame();
-    } else if (tryAgain && questionCounter[0] > 1) {
+    console.log(schrugman.join("").bgBlue);
+    console.log(
+        "             I'm sorry, but you lost.           ".bgBlack.bold,
+    );
+    let tryAgain = keyInYN(
+        "\n\n\t Want to try again? >>> ".yellow.bold.underline,
+    );
+    if (tryAgain) {
         questionCounter[0] = 0;
         moviesArray.push(...usedMovies);
         usedMovies.length = 0;
