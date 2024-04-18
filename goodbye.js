@@ -1,5 +1,10 @@
 import colors from "colors";
-import { userName, questionCounter } from "./constants.js";
+import {
+    userName,
+    questionCounter,
+    moviesArray,
+    usedMovies,
+} from "./constants.js";
 import { seeYouSoon } from "./pictures.js";
 
 export function goodbye() {
@@ -10,18 +15,15 @@ export function goodbye() {
             " for your visit.".blue.bold,
     );
 
-    if (questionCounter[0] === 1) {
-        console.log(
-            "You answered".blue +
-                " 1 question ".yellow.bold.underline +
-                "correctly.".blue,
-        );
-    } else if (questionCounter[0] > 1) {
+    if (questionCounter[0] >= 1) {
         console.log(
             "You answered ".blue +
-                `${questionCounter[0]}`.yellow.bold.underline +
-                " questions".yellow.bold.underline +
-                " correctly".blue,
+                ` ${questionCounter[0]} `.yellow.bold.underline +
+                " " +
+                "of ".yellow +
+                `${moviesArray.length + usedMovies.length}`.yellow +
+                " questions".blue +
+                " correctly.".yellow.bold,
         );
     }
 
