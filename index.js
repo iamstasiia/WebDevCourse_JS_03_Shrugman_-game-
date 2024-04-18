@@ -11,10 +11,10 @@ export function greet() {
     console.log(schrugman.join("").yellow);
 
     let userName = question(
-        "\tShrugman".white.bold +
+        "\n\tShrugman".white.bold +
             " will be happy to meet you.".white +
             "\n\t     What is ".blue +
-            "your name?".blue.bold.underline +
+            "YOUR NAME?".yellow.bold +
             " >>> ".blue,
     );
     return userName.length === 0

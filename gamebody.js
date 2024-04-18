@@ -19,6 +19,7 @@ export function schrugmanGame() {
 
     let userHiddenMan = [...smallMan];
     let userSmallMan = [];
+    let wrongLetters = [];
 
     let run = true;
     while (run) {
@@ -43,7 +44,9 @@ export function schrugmanGame() {
         console.log(
             "    " +
                 userSmallMan.join("").rainbow.bold +
-                userHiddenMan.join("").gray.dim,
+                userHiddenMan.join("").gray.dim +
+                "    " +
+                wrongLetters.join(" "),
         );
 
         if (userSmallMan.length >= 7) {
@@ -61,10 +64,8 @@ export function schrugmanGame() {
         let answer = question(
             "\n Enter a letter ".bgYellow.black +
                 " " +
-                ">".bgCyan +
-                ">".bgYellow +
-                ">".bgGreen +
-                " ",
+                ">>>".rainbow.bold +
+                "  ",
         );
 
         if (answer.length !== 0) {
@@ -79,6 +80,7 @@ export function schrugmanGame() {
             } else {
                 userSmallMan.push(userHiddenMan[0]);
                 userHiddenMan.shift();
+                wrongLetters.push(` ${answer[0]} `.red.bold.strikethrough);
             }
         }
 
